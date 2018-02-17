@@ -16,7 +16,7 @@
     "build:npm": "npm run publisher",
     "publisher": "rm npm_dist -Rf && npm run packagr && cd npm_dist && mv $(npm pack) dist.tgz"
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@angular/animations": ">=2.4.5",
     "@angular/common": ">=2.4.5",
