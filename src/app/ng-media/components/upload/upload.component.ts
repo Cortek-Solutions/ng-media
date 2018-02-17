@@ -24,24 +24,24 @@ export class UploadComponent {
     this.uploadHandler(files);
   }
 
+  // @todo check for lack of memory
   uploadHandler(files) {
-    const _self = this;
     const filesCount = files.length;
     let fileIndex = 0;
     for (const _file of files) {
-      _self.progressPrecent = 0;
-      _self.progressIsActive = true;
+      this.progressPrecent = 0;
+      this.progressIsActive = true;
       const file: File = _file;
       const reader: FileReader = new FileReader();
       reader.onloadend = (e) => {
-        _self._ub.uploaderBridge.emit({
+        this._ub.uploaderBridge.emit({
           src: reader.result,
           name: file.name,
         });
         fileIndex++;
-        _self.progressPrecent = (fileIndex / filesCount) * 100;
+        this.progressPrecent = (fileIndex / filesCount) * 100;
         if (fileIndex === filesCount) {
-          _self.progressIsActive = false;
+          this.progressIsActive = false;
         }
       };
       reader.readAsDataURL(file);

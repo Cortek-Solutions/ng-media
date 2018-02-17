@@ -22,9 +22,8 @@ export class CanvasComponent implements AfterViewInit {
     const img = new Image;
     img.src = this.canvas.src;
     img.onload = (e) => {
-      // ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, 150, 150);
-      const offsetX = 0.5;   // center x
-      const offsetY = 0.5;   // center y
+      const offsetX = 0.5;
+      const offsetY = 0.5;
       this.utils.drawImageProp(ctx, img, 0, 0, 150, 150, offsetX, offsetY);
     };
   }
