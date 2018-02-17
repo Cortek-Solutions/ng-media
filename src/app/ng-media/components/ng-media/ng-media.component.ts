@@ -11,13 +11,12 @@ export class NgMediaComponent {
   constructor() { }
 
   uploader(element: any) {
-    const _self = this;
     const files = element.target.files;
     for (const _file of files) {
       const file: File = _file;
       const reader: FileReader = new FileReader();
       reader.onloadend = (e) => {
-        _self.images.push({
+        this.images.push({
           src: reader.result,
           name: file.name,
         });
