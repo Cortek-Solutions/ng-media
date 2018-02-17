@@ -4,8 +4,9 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
+    "build:github": "ng build -e=prod -prod --base-href=/ng-media --deploy-url=/ng-media/ --progress false",
+    "build": "ng build -e=prod -prod  --progress false",
     "start": "ng serve",
-    "build": "ng build --prod",
     "hmr": "ng serve --hmr -e=hmr",
     "test": "ng test",
     "lint": "ng lint",
