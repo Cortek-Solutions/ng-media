@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MediaToolbarComponent implements OnInit {
 
+  private _timer = null;
   public types = [];
   public dates = [];
 
@@ -44,4 +45,7 @@ export class MediaToolbarComponent implements OnInit {
   ngOnInit() {
   }
 
+  public InputChange (value: string) {
+    console.log(value);
+  }
 }
