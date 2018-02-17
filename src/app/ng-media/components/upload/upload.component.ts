@@ -34,6 +34,7 @@ export class UploadComponent {
       const file: File = _file;
       const reader: FileReader = new FileReader();
       reader.onloadend = (e) => {
+
         this._ub.uploaderBridge.emit({
           src: reader.result,
           name: file.name,

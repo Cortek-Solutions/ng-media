@@ -9,19 +9,4 @@ export class NgMediaComponent {
   public images: Array<any> = [];
 
   constructor() { }
-
-  uploader(element: any) {
-    const files = element.target.files;
-    for (const _file of files) {
-      const file: File = _file;
-      const reader: FileReader = new FileReader();
-      reader.onloadend = (e) => {
-        this.images.push({
-          src: reader.result,
-          name: file.name,
-        });
-      };
-      reader.readAsDataURL(file);
-    }
-  }
 }
