@@ -7,18 +7,12 @@
       <span class="icon dashicons-grid-view"></span>
     </div>
   </div>
-
   <select id="media-attachment-filters" class="ngm-input">
-    <option value="all">All media items</option>
-    <option value="image">Images</option>
-    <option value="audio">Audio</option>
-    <option value="video">Video</option>
-    <option value="others">Other types</option>
+    <option [value]="type.value" *ngFor="let type of types">{{type.value}}</option>
   </select>
 
   <select id="media-attachment-date-filters" class="ngm-input">
-    <option value="all">All dates</option>
-    <option value="0">February 2018</option>
+      <option [value]="date.value" *ngFor="let date of dates">{{date.value}}</option>
   </select>
 
   <button class="ngm-btn ngm-btn-md">Bulk Select</button>
