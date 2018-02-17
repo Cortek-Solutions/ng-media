@@ -7,6 +7,7 @@
     "build:github": "ng build -e=prod -prod --base-href=/ng-media --deploy-url=/ng-media/ --progress false",
     "build": "ng build -e=prod -prod  --progress false",
     "start": "ng serve",
+    "gh-pages": "git push origin :gh-pages && git subtree push --prefix dist origin gh-pages",
     "hmr": "ng serve --hmr -e=hmr",
     "test": "ng test",
     "lint": "ng lint",
