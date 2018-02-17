@@ -1,26 +1,12 @@
-# NgMedia
+# NgMedia : A media manager plugin for Angular 2+
 
 Enterprise level image gallery, media manager, posts dependency assigner, inspired by WordPress gallery.
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+**We are working hardly on this plugin to provide it for angular 2+ within an stable version**.
 
-## Code scaffolding
+Our expected release date is 02 March 2018, beforehand you can use it for testing purposes and let us know about
+your feedback.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Live demo
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+https://owsolutions.github.io/ng-media/
