@@ -1,5 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { UploaderService } from '../../services/uploader.service';
+import { Store } from '@ngrx/store';
+import { AppState, IImage } from '../../../definitions';
 
 @Component({
   selector: 'app-upload',
@@ -13,7 +15,10 @@ export class UploadComponent {
   public windowUploader = false;
   public progressPrecent: Number;
 
-  constructor(private _ub: UploaderService) { }
+  constructor(
+    private _ub: UploaderService,
+    private store: Store<AppState>,
+  ) { }
 
   activeUploader() {
     this.active = this.active ? false : true;
@@ -35,9 +40,12 @@ export class UploadComponent {
       const reader: FileReader = new FileReader();
       reader.onloadend = (e) => {
 
-        this._ub.uploaderBridge.emit({
-          src: reader.result,
-          name: file.name,
+        this.store.dispatch({
+          type: 'ADD_NEW_ITEM',
+          payload: {
+            src: reader.result,
+            name: file.name,
+          } as IImage
         });
         fileIndex++;
         this.progressPrecent = (fileIndex / filesCount) * 100;

@@ -1,8 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { UploaderService } from '../../services/uploader.service';
-import { IImage } from '../../../definitions';
-import media from '../../mocks';
+import { IImage, AppState, IEvent } from '../../../definitions';
+import { Store } from '@ngrx/store';
 
+declare var require: any;
+
+function selectImage (image: IImage, images: IImage[]): IImage[] {
+  return images.map((x: IImage) => {
+    if ( ! x.$meta) {
+      x.$meta = {
+        selected: false
+      };
+    }
+    if (x.id === image.id) {
+      x.$meta.selected = true;
+    } else {
+      x.$meta.selected = false;
+    }
+    return x;
+  });
+}
 @Component({
   selector: 'app-grid-view',
   templateUrl: './grid-view.component.html',
@@ -10,22 +27,46 @@ import media from '../../mocks';
 })
 export class GridViewComponent implements OnInit {
   public images: Array<IImage> = [];
+  public searchMode = false;
+  public filteredImages: Array<IImage> = [];
 
-  constructor(private _ub: UploaderService) {
-    _ub.uploaderBridge.subscribe(items => {
-      this.images.push(items);
-      // localStorage.setItem('media_cache', JSON.stringify(this.images));
-    });
+  constructor(
+    private uploader: UploaderService,
+    private store: Store<AppState>,
+  ) {
     try {
-      // const media = JSON.parse(localStorage.getItem('media_cache'));
-      // console.log(localStorage.getItem('media_cache'));
-      // console.log(media);
-      this.images = media || [];
+      this.images = [];
     } catch (error) {
       //
     }
   }
   ngOnInit() {
+    this.uploader.events.subscribe((event: IEvent) => {
+      if (event.type === 'SEARCH_START') {
+        this.searchMode = true;
+      }
+      if (event.type === 'SEARCH_CLEAR') {
+        this.searchMode = false;
+      }
+    });
+    this.store.select('mediaItems').subscribe((items: IImage[]) => {
+      this.images = items;
+    });
+    this.store.select('searchMediaItems').subscribe((items: IImage[]) => {
+      this.filteredImages = items;
+    });
   }
 
+  public GetSearchImages () {
+    return this.filteredImages;
+  }
+  public GetImages () {
+    return this.images;
+  }
+
+  public ImageSelect (image: IImage) {
+    this.uploader.photoSelector.emit(image);
+    this.images = selectImage(image, this.images);
+    console.log( image );
+  }
 }

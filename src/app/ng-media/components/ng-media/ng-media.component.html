@@ -1,7 +1,17 @@
 <div class="ngm-container">
   <app-upload></app-upload>
   <app-media-toolbar></app-media-toolbar>
-  <app-grid-view></app-grid-view>
+
+  <div style="display: flex">
+    <div style="flex: 2;">
+      <app-grid-view></app-grid-view>
+    </div>
+    <div style="flex: 1;">
+      <app-media-details></app-media-details>
+    </div>
+  </div>
+  
+  
   <!-- Uploade File : <input type="file" multiple (change)="uploader($event)">
   <br>
   <div class="preview-image" *ngFor="let image of images">
