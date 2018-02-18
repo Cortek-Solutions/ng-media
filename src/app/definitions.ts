@@ -6,6 +6,14 @@ export interface IRectangle {
 }
 
 export interface IImage {
+  $meta?: {
+    selected: boolean;
+  };
+  id: string;
   name: string;
   src: string;
+}
+
+export interface AppState {
+  mediaItems: Array<any>;
 }
