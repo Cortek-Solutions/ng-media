@@ -12,8 +12,16 @@ export interface IImage {
   id: string;
   name: string;
   src: string;
+  title?: string;
+  alt?: string;
+  description?: string;
 }
 
 export interface AppState {
   mediaItems: Array<any>;
+  searchMediaItems: Array<IImage>;
+}
+
+export interface IEvent {
+  type: 'SEARCH_START' | 'SEARCH_END' | 'SEARCH_CLEAR';
 }

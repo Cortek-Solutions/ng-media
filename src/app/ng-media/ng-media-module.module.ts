@@ -8,12 +8,16 @@ import { MediaToolbarComponent } from './components/media-toolbar/media-toolbar.
 import { GridViewComponent } from './components/grid-view/grid-view.component';
 import { MediaDetailsComponent } from './components/media-details/media-details.component';
 import { StoreModule } from '@ngrx/store';
-import { mediaReducer } from '../app.reducer';
+import { mediaReducer, mediaSearchReducer } from '../app.reducer';
+import { FormsModule } from '@angular/forms';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    StoreModule.forRoot({ mediaItems: mediaReducer}),
+    StoreModule.forRoot({ mediaItems: mediaReducer,
+      searchMediaItems: mediaSearchReducer}),
+    FormsModule,
   ],
   declarations: [
     NgMediaComponent,
@@ -21,7 +25,8 @@ import { mediaReducer } from '../app.reducer';
     UploadComponent,
     MediaToolbarComponent,
     GridViewComponent,
-    MediaDetailsComponent
+    MediaDetailsComponent,
+    SpinnerComponent
   ],
   providers: [UploaderService],
   exports: [

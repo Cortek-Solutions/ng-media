@@ -1,26 +1,26 @@
 <div class="form-container">
   <div *ngIf="image">
-    <img style="width: 150px; height: 100px;" [src]="image.src">
+    <!-- <img style="width: 150px; height: 100px;" [src]="image.src"> -->
     <br>
-    <input type="text"
-      (input)="InputChange($event.target.value)"
+    <input type="text" [(ngModel)]="image.title"
       class="ngm-input ngm-form-control" placeholder="Media title">
-      <br>
-    <input type="text"
-    [value]="image.name"
-    (input)="InputChange($event.target.value)"
-    class="ngm-input ngm-form-control" placeholder="Media filename">
     <br>
     <input type="text"
-      (input)="InputChange($event.target.value)"
+      [(ngModel)]="image.name"
+      class="ngm-input ngm-form-control" placeholder="Media filename">
+    <br>
+    <input type="text"
+      [(ngModel)]="image.alt"
       class="ngm-input ngm-form-control" placeholder="Media alt">
       <br>
     <textarea type="text"
-      (input)="InputChange($event.target.value)"
+      [(ngModel)]="image.description"
       class="ngm-input ngm-form-control" placeholder="Media description"></textarea>
-
-      <button>Update</button>
+      <br>
+      <button (click)="UpdateImage(image)">Update</button>
       <button (click)="DeleteImage(image)">Delete</button>
   </div>
+
+  
 
 </div>

@@ -16,5 +16,9 @@
   </select>
 
   <button class="ngm-btn ngm-btn-md">Bulk Select</button>
-  <input (input)="InputChange($event.target.value)" type="text" class="ngm-input ngm-pull-right ngm-media-search" placeholder="Search media items...">
+
+  <input (input)="InputChange($event.target.value)" type="text"
+    class="ngm-input ngm-pull-right ngm-media-search" placeholder="Search media items...">
+  <app-spinner [ngClass]="loadingActive ? 'active' : ''" *ngIf="loading" class="ngm-pull-right"></app-spinner>
+
 </div>
