@@ -33,4 +33,11 @@ export class RequestsService {
     });
   }
 
+  public DeleteItem(id: string) {
+    console.log('Requested to delete: ', id);
+  }
+  public UpdateImage(image: IImage) {
+    console.log('Requested to update: ', image);
+  }
+
 }

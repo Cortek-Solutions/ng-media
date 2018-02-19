@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UploaderService } from '../../services/uploader.service';
 import { IImage, AppState } from '../../../definitions';
 import { Store } from '@ngrx/store';
+import { RequestsService } from '../../services/requests.service';
 @Component({
   selector: 'app-media-details',
   templateUrl: './media-details.component.html',
@@ -13,6 +14,7 @@ export class MediaDetailsComponent implements OnInit {
   constructor(
     private us: UploaderService,
     private store: Store<AppState>,
+    private requests: RequestsService,
   ) { }
 
   ngOnInit() {
@@ -22,6 +24,7 @@ export class MediaDetailsComponent implements OnInit {
   }
 
   public DeleteImage (image: IImage) {
+    this.requests.DeleteItem(image.id);
     this.store.dispatch({
       type: 'DELETE_ITEM',
       payload: image
@@ -29,6 +32,7 @@ export class MediaDetailsComponent implements OnInit {
     this.image = null;
   }
   public UpdateImage (image: IImage) {
+    this.requests.UpdateImage(image);
     this.store.dispatch({
       type: 'UPDATE_ITEM',
       payload: image

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UploaderService } from '../../services/uploader.service';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../../definitions';
+import { AppState, IImage } from '../../../definitions';
 import mocks from '../../mocks';
-import { sample, times, random } from 'lodash';
+import { sample, times, random, sortBy, uniqBy } from 'lodash';
 
 @Component({
   selector: 'app-media-toolbar',
@@ -53,7 +53,30 @@ export class MediaToolbarComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.store.select('mediaItems').subscribe((images: IImage []) => {
+      this.dates = this.findDates(images);
+    });
   }
+
+
+  private findDates (items: IImage[]): Array<{key: string, value: string}> {
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+    const dates = [];
+    for (const item of items) {
+      if ( ! item.date) {
+        continue;
+      }
+      const key = item.date.getFullYear() + '-' + item.date.getMonth();
+      dates.push({
+        key,
+        value: item.date.getFullYear() + ' ' + monthNames[item.date.getMonth()],
+      });
+    }
+    return sortBy(uniqBy(dates, 'key'), 'key');
+  }
+
 
   public InputChange (value: string) {
     if (!value) {

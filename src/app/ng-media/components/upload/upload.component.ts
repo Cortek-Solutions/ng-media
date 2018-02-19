@@ -38,6 +38,7 @@ export class UploadComponent {
       this.progressIsActive = true;
       const file: File = _file;
       const reader: FileReader = new FileReader();
+      
       reader.onloadend = (e) => {
 
         this.store.dispatch({

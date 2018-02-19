@@ -45,17 +45,6 @@ export class GridViewComponent implements OnInit {
     this.requests.GetInitialMedias();
   }
 
-  private findDates (items: IImage[]): Array<{key: string, value: string}> {
-    const dates = [];
-    for (const item of items) {
-      dates.push({
-        key: item.date.getFullYear() + '-' + item.date.getMonth(),
-        value: item.date.getFullYear() + '-' + item.date.getMonth(),
-      });
-    }
-    return dates;
-  }
-
   public GetSearchImages () {
     return this.filteredImages;
   }
