@@ -11,6 +11,7 @@ import { StoreModule } from '@ngrx/store';
 import { mediaReducer, mediaSearchReducer } from '../app.reducer';
 import { FormsModule } from '@angular/forms';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { RequestsService } from './services/requests.service';
 
 @NgModule({
   imports: [
@@ -28,7 +29,10 @@ import { SpinnerComponent } from './spinner/spinner.component';
     MediaDetailsComponent,
     SpinnerComponent
   ],
-  providers: [UploaderService],
+  providers: [
+    UploaderService,
+    RequestsService,
+  ],
   exports: [
     NgMediaComponent
   ]

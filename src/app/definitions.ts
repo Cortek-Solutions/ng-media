@@ -15,6 +15,7 @@ export interface IImage {
   title?: string;
   alt?: string;
   description?: string;
+  date?: Date;
 }
 
 export interface AppState {

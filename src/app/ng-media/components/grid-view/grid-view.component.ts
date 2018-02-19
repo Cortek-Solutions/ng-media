@@ -2,24 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { UploaderService } from '../../services/uploader.service';
 import { IImage, AppState, IEvent } from '../../../definitions';
 import { Store } from '@ngrx/store';
+import { RequestsService } from '../../services/requests.service';
 
 declare var require: any;
 
-function selectImage (image: IImage, images: IImage[]): IImage[] {
-  return images.map((x: IImage) => {
-    if ( ! x.$meta) {
-      x.$meta = {
-        selected: false
-      };
-    }
-    if (x.id === image.id) {
-      x.$meta.selected = true;
-    } else {
-      x.$meta.selected = false;
-    }
-    return x;
-  });
-}
 @Component({
   selector: 'app-grid-view',
   templateUrl: './grid-view.component.html',
@@ -32,6 +18,7 @@ export class GridViewComponent implements OnInit {
 
   constructor(
     private uploader: UploaderService,
+    private requests: RequestsService,
     private store: Store<AppState>,
   ) {
     try {
@@ -55,6 +42,18 @@ export class GridViewComponent implements OnInit {
     this.store.select('searchMediaItems').subscribe((items: IImage[]) => {
       this.filteredImages = items;
     });
+    this.requests.GetInitialMedias();
+  }
+
+  private findDates (items: IImage[]): Array<{key: string, value: string}> {
+    const dates = [];
+    for (const item of items) {
+      dates.push({
+        key: item.date.getFullYear() + '-' + item.date.getMonth(),
+        value: item.date.getFullYear() + '-' + item.date.getMonth(),
+      });
+    }
+    return dates;
   }
 
   public GetSearchImages () {
@@ -66,7 +65,6 @@ export class GridViewComponent implements OnInit {
 
   public ImageSelect (image: IImage) {
     this.uploader.photoSelector.emit(image);
-    this.images = selectImage(image, this.images);
-    console.log( image );
+    this.images = this.uploader.selectImage(image, this.images);
   }
 }

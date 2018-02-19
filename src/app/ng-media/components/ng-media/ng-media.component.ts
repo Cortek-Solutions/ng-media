@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { IImage, AppState } from '../../../definitions';
-import media from '../../mocks';
-declare var require: any;
-const uuid = require('uuid/v1');
+
 
 @Component({
   selector: 'app-ng-media',
@@ -16,12 +14,6 @@ export class NgMediaComponent {
   constructor(
     private store: Store<AppState>,
   ) {
-    this.store.dispatch({
-      type: 'RESET_ITEMS',
-      payload: media.map((x: IImage) => {
-        x.id = uuid();
-        return x;
-      }),
-    });
+
   }
 }
