@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UploaderService } from '../../services/uploader.service';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../../definitions';
+import { AppState } from '../../interfaces/definitions';
 import mocks from '../../mocks';
 import { sample, times, random } from 'lodash';
 

@@ -12,9 +12,17 @@ export interface IImage {
   id: string;
   name: string;
   src: string;
+  type?: string;
+  size?: number;
+  width?: number;
+  height?: number;
   title?: string;
   alt?: string;
   description?: string;
+  caption?: string;
+  createdDate?: Date;
+  updatedDate?: Date;
+  uploadedBy?: string;
 }
 
 export interface AppState {

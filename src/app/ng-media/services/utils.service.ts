@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IRectangle } from '../../definitions';
+import { IRectangle } from '../interfaces/definitions';
 
 /**
  * Keeps a value between two numbers, based on min and max

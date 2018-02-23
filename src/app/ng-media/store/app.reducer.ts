@@ -1,4 +1,4 @@
-import { IImage } from './definitions';
+import { IImage } from './../interfaces/definitions';
 import { Action } from '@ngrx/store';
 import { merge } from 'lodash';
 
