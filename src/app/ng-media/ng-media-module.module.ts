@@ -12,6 +12,9 @@ import { StoreModule } from '@ngrx/store';
 import { mediaReducer, mediaSearchReducer } from './store/app.reducer';
 import { FormsModule } from '@angular/forms';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { ImageCropperComponent } from './components/image-cropper/image-cropper.component';
+import { ImageEditorComponent } from './components/image-editor/image-editor.component';
+import { CrudService } from './services/crud.service';
 
 @NgModule({
   imports: [
@@ -27,14 +30,17 @@ import { SpinnerComponent } from './spinner/spinner.component';
     MediaToolbarComponent,
     GridViewComponent,
     MediaDetailsComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    ImageCropperComponent,
+    ImageEditorComponent
   ],
   entryComponents: [
     MediaDetailsComponent
   ],
   providers: [
     UploaderService,
-    DetailPanelService
+    DetailPanelService,
+    CrudService
   ],
   exports: [
     NgMediaComponent

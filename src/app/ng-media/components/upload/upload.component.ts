@@ -2,6 +2,7 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { UploaderService } from '../../services/uploader.service';
 import { Store } from '@ngrx/store';
 import { AppState, IImage } from '../../interfaces/definitions';
+import { CrudService } from '../../services/crud.service';
 declare var require: any;
 const uuid = require('uuid/v1');
 
@@ -19,7 +20,7 @@ export class UploadComponent {
 
   constructor(
     private _ub: UploaderService,
-    private store: Store<AppState>,
+    private crud: CrudService
   ) { }
 
   activeUploader() {
@@ -48,21 +49,19 @@ export class UploadComponent {
         img.onload = () => {
           width = img.width;
           height = img.height;
-          this.store.dispatch({
-            type: 'ADD_NEW_ITEM',
-            payload: {
-              id: uuid(),
-              src: reader.result,
-              name: file.name,
-              size: file.size,
-              type: file.type,
-              width: width,
-              height: height,
-              createdDate: new Date(),
-              updatedDate: new Date(),
-              uploadedBy: 'Admin'
-            } as IImage
-          });
+          const item =  {
+            id: uuid(),
+            src: reader.result,
+            name: file.name,
+            size: file.size,
+            type: file.type,
+            width: width,
+            height: height,
+            createdDate: new Date().toString(),
+            updatedDate: new Date().toString(),
+            uploadedBy: 'Admin'
+          } as IImage;
+          this.crud.CreateItem(item);
         };
         // fileIndex++;
         // this.progressPrecent = (fileIndex / filesCount) * 100;

@@ -8,6 +8,7 @@ export interface IRectangle {
 export interface IImage {
   $meta?: {
     selected: boolean;
+    editing?: boolean;
   };
   id: string;
   name: string;
@@ -20,8 +21,8 @@ export interface IImage {
   alt?: string;
   description?: string;
   caption?: string;
-  createdDate?: Date;
-  updatedDate?: Date;
+  createdDate?: string;
+  updatedDate?: string;
   uploadedBy?: string;
 }
 

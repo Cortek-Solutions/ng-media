@@ -19,7 +19,6 @@ export class NgMediaComponent {
     this.store.dispatch({
       type: 'RESET_ITEMS',
       payload: media.map((x: IImage) => {
-        x.id = uuid();
         return x;
       }),
     });
