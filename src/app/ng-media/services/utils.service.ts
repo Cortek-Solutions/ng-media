@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IRectangle } from '../../definitions';
+import { IRectangle, ImageScale } from '../interfaces/definitions';
 
 /**
  * Keeps a value between two numbers, based on min and max
@@ -45,4 +45,15 @@ export class UtilsService {
     ctx.drawImage(img, cx, cy, cw, ch, size.x, size.y, size.w, size.h);
   }
 
+  getScale(width, height, percentage) {
+    return new Promise<ImageScale> ((resolve, reject) => {
+      const min = Math.min(width, height);
+      const result = Math.max(min * (percentage / 100), 350);
+      const scaled = {
+        width: (result / min) * width,
+        height: (result / min) * height
+      };
+      resolve(scaled);
+    });
+  }
 }

@@ -1,7 +1,10 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { UploaderService } from '../../services/uploader.service';
 import { Store } from '@ngrx/store';
-import { AppState, IImage } from '../../../definitions';
+import { AppState, IImage } from '../../interfaces/definitions';
+import { CrudService } from '../../services/crud.service';
+declare var require: any;
+const uuid = require('uuid/v1');
 
 @Component({
   selector: 'app-upload',
@@ -17,7 +20,7 @@ export class UploadComponent {
 
   constructor(
     private _ub: UploaderService,
-    private store: Store<AppState>,
+    private crud: CrudService
   ) { }
 
   activeUploader() {
@@ -32,27 +35,40 @@ export class UploadComponent {
   // @todo check for lack of memory
   uploadHandler(files) {
     const filesCount = files.length;
-    let fileIndex = 0;
+    // let fileIndex = 0;
     for (const _file of files) {
       this.progressPrecent = 0;
       this.progressIsActive = true;
       const file: File = _file;
+      const img = new Image;
+      let width = 0,
+            height = 0;
       const reader: FileReader = new FileReader();
       
       reader.onloadend = (e) => {
-
-        this.store.dispatch({
-          type: 'ADD_NEW_ITEM',
-          payload: {
+        img.src = reader.result;
+        img.onload = () => {
+          width = img.width;
+          height = img.height;
+          const item =  {
+            id: uuid(),
             src: reader.result,
             name: file.name,
-          } as IImage
-        });
-        fileIndex++;
-        this.progressPrecent = (fileIndex / filesCount) * 100;
-        if (fileIndex === filesCount) {
-          this.progressIsActive = false;
-        }
+            size: file.size,
+            type: file.type,
+            width: width,
+            height: height,
+            createdDate: new Date().toString(),
+            updatedDate: new Date().toString(),
+            uploadedBy: 'Admin'
+          } as IImage;
+          this.crud.CreateItem(item);
+        };
+        // fileIndex++;
+        // this.progressPrecent = (fileIndex / filesCount) * 100;
+        // if (fileIndex === filesCount) {
+        //   this.progressIsActive = false;
+        // }
       };
       reader.readAsDataURL(file);
     }

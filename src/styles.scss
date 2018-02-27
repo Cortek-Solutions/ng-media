@@ -1,5 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("./assets/dashicons.min.css");
+* {
+    box-sizing: border-box;
+}
+
 body {
     background: #f1f1f1;
     font-family: "Segoe UI","Helvetica Neue",sans-serif;
@@ -84,8 +88,51 @@ $textAlign: "left", "right", "center";
             background-color: lighten($color: #6ed200, $amount: 10%)
         }
     }
+    &.ngm-btn-danger {
+        border-color: #bc0b0b;
+        background-color: #bc0b0b;
+        color: #fff;
+        &:hover{
+            background-color: lighten($color: #bc0b0b, $amount: 10%)
+        }
+    }
 }
 
+// Form group
+.ngm-form-group-container{
+    display: table;
+    width: 90%;
+    border-spacing: 0 5px;
+    .ngm-form-group{
+        display: table-row;
+        .ngm-form-group-title, .ngm-form-group-element {
+            display: table-cell;
+            vertical-align: top;
+            border-spacing: 5px 0;
+            font-size: 13px;
+        }
+        .ngm-form-group-title {
+            padding: 0 10px;
+            text-align: right;
+            white-space: nowrap;
+            >span {
+                position: relative;
+                top: 5px;
+            }
+        }
+        .ngm-form-group-element {
+            input[type=text] {
+                padding: 6px;
+                width: 100%;
+            }
+            textarea {
+                width: 100%;
+                height: 75px;
+                resize: horizontal;
+            }
+        }
+    }
+}
 .icon {
     font: 400 20px/1 dashicons;
     vertical-align: middle;

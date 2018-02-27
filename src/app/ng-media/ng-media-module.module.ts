@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UploaderService } from './services/uploader.service';
+import { DetailPanelService } from './services/detail-panel.service';
 import { NgMediaComponent } from './components/ng-media/ng-media.component';
 import { CanvasComponent } from './components/canvas/canvas.component';
 import { UploadComponent } from './components/upload/upload.component';
@@ -8,9 +9,13 @@ import { MediaToolbarComponent } from './components/media-toolbar/media-toolbar.
 import { GridViewComponent } from './components/grid-view/grid-view.component';
 import { MediaDetailsComponent } from './components/media-details/media-details.component';
 import { StoreModule } from '@ngrx/store';
-import { mediaReducer, mediaSearchReducer } from '../app.reducer';
+import { mediaReducer, mediaSearchReducer } from './store/app.reducer';
 import { FormsModule } from '@angular/forms';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { ImageCropperComponent } from './components/image-cropper/image-cropper.component';
+import { ImageEditorComponent } from './components/image-editor/image-editor.component';
+import { CrudService } from './services/crud.service';
+import { UtilsService } from './services/utils.service';
 import { RequestsService } from './services/requests.service';
 
 @NgModule({
@@ -27,11 +32,19 @@ import { RequestsService } from './services/requests.service';
     MediaToolbarComponent,
     GridViewComponent,
     MediaDetailsComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    ImageCropperComponent,
+    ImageEditorComponent
+  ],
+  entryComponents: [
+    MediaDetailsComponent
   ],
   providers: [
     UploaderService,
-    RequestsService,
+    DetailPanelService,
+    UtilsService,
+    CrudService,
+    RequestsService
   ],
   exports: [
     NgMediaComponent
