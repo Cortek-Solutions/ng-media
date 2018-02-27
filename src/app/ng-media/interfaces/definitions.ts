@@ -34,3 +34,8 @@ export interface AppState {
 export interface IEvent {
   type: 'SEARCH_START' | 'SEARCH_END' | 'SEARCH_CLEAR';
 }
+
+export interface ImageScale {
+  width: number;
+  height: number;
+}

@@ -15,6 +15,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { ImageCropperComponent } from './components/image-cropper/image-cropper.component';
 import { ImageEditorComponent } from './components/image-editor/image-editor.component';
 import { CrudService } from './services/crud.service';
+import { UtilsService } from './services/utils.service';
 
 @NgModule({
   imports: [
@@ -40,6 +41,7 @@ import { CrudService } from './services/crud.service';
   providers: [
     UploaderService,
     DetailPanelService,
+    UtilsService,
     CrudService
   ],
   exports: [
