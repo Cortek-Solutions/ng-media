@@ -53,6 +53,7 @@ export class MediaDetailsComponent implements OnInit {
       payload: image
     });
     this.image = null;
+    this._ref.destroy();
   }
 
   enableEditing(image: IImage) {
