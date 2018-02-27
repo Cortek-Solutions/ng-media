@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PublicService } from '../../services/public.service';
 
 @Component({
   selector: 'app-ng-media',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class NgMediaComponent {
 
+  constructor (
+    private _pub: PublicService,
+  ) {
+  }
+  public openSelector () {
+    this._pub.open(null);
+  }
 }

@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ng-media-selector.component.scss']
 })
 export class NgMediaSelectorComponent implements OnInit {
+  public _ref: any;
 
   constructor() { }
 
   ngOnInit() {
+  }
+  close(e) {
+    if (e.target === e.currentTarget) {
+      this._ref.destroy();
+    }
   }
 
 }
