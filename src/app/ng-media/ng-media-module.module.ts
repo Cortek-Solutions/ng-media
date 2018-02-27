@@ -17,6 +17,7 @@ import { ImageEditorComponent } from './components/image-editor/image-editor.com
 import { CrudService } from './services/crud.service';
 import { UtilsService } from './services/utils.service';
 import { RequestsService } from './services/requests.service';
+import { NgMediaSelectorComponent } from './ng-media-selector/ng-media-selector.component';
 
 @NgModule({
   imports: [
@@ -34,10 +35,11 @@ import { RequestsService } from './services/requests.service';
     MediaDetailsComponent,
     SpinnerComponent,
     ImageCropperComponent,
-    ImageEditorComponent
+    ImageEditorComponent,
+    NgMediaSelectorComponent
   ],
   entryComponents: [
-    MediaDetailsComponent
+    MediaDetailsComponent,
   ],
   providers: [
     UploaderService,
@@ -47,7 +49,8 @@ import { RequestsService } from './services/requests.service';
     RequestsService
   ],
   exports: [
-    NgMediaComponent
+    NgMediaComponent,
+    NgMediaSelectorComponent
   ]
 })
 export class NgMediaModuleModule { }

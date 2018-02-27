@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { IImage, AppState } from '#defs';
-
 
 @Component({
   selector: 'app-ng-media',
@@ -9,11 +6,5 @@ import { IImage, AppState } from '#defs';
   styleUrls: ['./ng-media.component.scss']
 })
 export class NgMediaComponent {
-  public images: Array<any> = [];
 
-  constructor(
-    private store: Store<AppState>,
-  ) {
-
-  }
 }
