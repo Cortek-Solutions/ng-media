@@ -21,8 +21,8 @@ export interface IImage {
   alt?: string;
   description?: string;
   caption?: string;
-  createdDate?: string;
-  updatedDate?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
   uploadedBy?: string;
 }
 

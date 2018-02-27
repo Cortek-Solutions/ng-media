@@ -3,6 +3,7 @@
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
+    "baseUrl": "src",
     "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
@@ -11,6 +12,9 @@
     "typeRoots": [
       "node_modules/@types"
     ],
+    "paths": {
+      "#defs": ["app/ng-media/interfaces/definitions"],
+    },
     "lib": [
       "es2017",
       "dom"

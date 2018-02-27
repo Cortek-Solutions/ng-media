@@ -58,8 +58,8 @@ export class UploadComponent {
             type: file.type,
             width: width,
             height: height,
-            createdDate: new Date().toString(),
-            updatedDate: new Date().toString(),
+            createdAt: new Date().toString(),
+            updatedAt: new Date().toString(),
             uploadedBy: 'Admin'
           } as IImage;
           this.crud.CreateItem(item);

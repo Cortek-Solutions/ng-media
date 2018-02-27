@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { IImage, AppState } from '../../../definitions';
+import { IImage, AppState } from '#defs';
 
 
 @Component({

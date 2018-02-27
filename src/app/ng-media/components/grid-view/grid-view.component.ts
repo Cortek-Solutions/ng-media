@@ -56,8 +56,7 @@ export class GridViewComponent implements OnInit {
 
   public ImageSelect (image: IImage) {
     this.uploader.photoSelector.emit(image);
-    this.images = this.uploader.selectImage(image, this.images);
-    this.images = selectImage(image, this.images);
+.  this.images = this.uploader.selectImage(image, this.images);
     this.panel.showDetaile(image);
   }
 }

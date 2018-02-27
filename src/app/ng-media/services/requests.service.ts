@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState, IImage } from '../../definitions';
+import { AppState, IImage } from '#defs';
 
 function randomDate(start, end) {
   return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
@@ -25,9 +25,9 @@ export class RequestsService {
 
     this.store.dispatch({
       type: 'RESET_ITEMS',
-      payload: media.map((x: IImage) => {
+      payload: media.map((x) => {
         x.id = uuid();
-        x.date = randomDate(new Date(2018, 0, 1), new Date(2018, 12, 30));
+        x['createdAt'] = randomDate(new Date(2018, 0, 1), new Date(2018, 12, 30));
         return x;
       }),
     });
