@@ -42,9 +42,8 @@ export class UploadComponent {
       const file: File = _file;
       const img = new Image;
       let width = 0,
-            height = 0;
+      height = 0;
       const reader: FileReader = new FileReader();
-      
       reader.onloadend = (e) => {
         img.src = reader.result;
         img.onload = () => {
@@ -58,17 +57,12 @@ export class UploadComponent {
             type: file.type,
             width: width,
             height: height,
-            createdAt: new Date().toString(),
-            updatedAt: new Date().toString(),
+            createdAt: new Date(),
+            updatedAt: new Date(),
             uploadedBy: 'Admin'
           } as IImage;
           this.crud.CreateItem(item);
         };
-        // fileIndex++;
-        // this.progressPrecent = (fileIndex / filesCount) * 100;
-        // if (fileIndex === filesCount) {
-        //   this.progressIsActive = false;
-        // }
       };
       reader.readAsDataURL(file);
     }
