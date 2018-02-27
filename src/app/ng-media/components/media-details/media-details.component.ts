@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { UploaderService } from '../../services/uploader.service';
 import { IImage, AppState } from '../../interfaces/definitions';
 import { Store } from '@ngrx/store';
+import { CrudService } from '../../services/crud.service';
 @Component({
   selector: 'app-media-details',
   templateUrl: './media-details.component.html',
@@ -12,11 +13,11 @@ export class MediaDetailsComponent {
   public images: Array<IImage>;
   public appRef: any;
   public _ref: any;
-  public Math: Math = Math;
 
   constructor(
     private us: UploaderService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private crud: CrudService
   ) {
     store.select('mediaItems').subscribe((items: IImage[]) => {
       this.images = items;
@@ -25,24 +26,29 @@ export class MediaDetailsComponent {
 
   public DeleteImage (image: IImage) {
     if (confirm('Are you sure you want to delete this item?')) {
-      this.store.dispatch({
-        type: 'DELETE_ITEM',
-        payload: image
-      });
+      this.crud.DeleteItem(image);
       this._ref.destroy();
     }
   }
 
   public UpdateImage (image: IImage) {
-    this.store.dispatch({
-      type: 'UPDATE_ITEM',
-      payload: image
-    });
+    this.crud.UpdateItem(image);
+  }
+
+  enableEditing(image: IImage) {
+    image.$meta.editing = true;
+    this.crud.UpdateItem(image);
+  }
+
+  disableEditing(image: IImage) {
+    image.$meta.editing = false;
+    this.crud.UpdateItem(image);
   }
 
   chnageItem(status) {
     let item = 0;
     const itemIndex = this.images.findIndex( x => x.id === this.image.id );
+    this.disableEditing(this.images[itemIndex]);
     switch (status) {
       case 'next':
         item = itemIndex + 1;
@@ -59,6 +65,7 @@ export class MediaDetailsComponent {
 
   close(e) {
     if (e.target === e.currentTarget) {
+      this.disableEditing(this.image);
       this._ref.destroy();
     }
   }
