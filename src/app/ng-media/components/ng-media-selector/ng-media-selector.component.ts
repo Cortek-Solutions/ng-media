@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IInteractionType } from '../../interfaces/definitions';
 
 @Component({
   selector: 'app-ng-media-selector',
@@ -10,6 +11,12 @@ export class NgMediaSelectorComponent implements OnInit {
 
   constructor() { }
 
+  public SingleSelector () {
+    return IInteractionType.SingleSelect;
+  }
+  public MultipleSelector () {
+    return IInteractionType.MultipleSelect;
+  }
   ngOnInit() {
   }
   close(e) {

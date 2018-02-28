@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UploaderService } from '../../services/uploader.service';
-import { IImage, AppState, IEvent } from '../../interfaces/definitions';
+import { IImage, AppState, IEvent, IInteractionType } from '../../interfaces/definitions';
 import { Store } from '@ngrx/store';
 import { RequestsService } from '../../services/requests.service';
 import { DetailPanelService } from './../../services/detail-panel.service';
@@ -16,6 +16,7 @@ export class GridViewComponent implements OnInit {
   public images: Array<IImage> = [];
   public searchMode = false;
   public filteredImages: Array<IImage> = [];
+  @Input() public InteractionType: IInteractionType = IInteractionType.Edit;
 
   constructor(
     private uploader: UploaderService,
@@ -55,8 +56,16 @@ export class GridViewComponent implements OnInit {
   }
 
   public ImageSelect (image: IImage) {
-    this.uploader.photoSelector.emit(image);
-    this.images = this.uploader.selectImage(image, this.images);
-    this.panel.showDetaile(image);
+    if (this.InteractionType === IInteractionType.MultipleSelect) {
+      this.images = this.uploader.multipleSelectImage(image, this.images);
+    }
+    if (this.InteractionType === IInteractionType.SingleSelect) {
+      this.images = this.uploader.selectImage(image, this.images);
+    }
+    if (this.InteractionType === IInteractionType.Edit) {
+      this.images = this.uploader.selectImage(image, this.images);
+      this.uploader.photoSelector.emit(image);
+      this.panel.showDetaile(image);
+    }
   }
 }

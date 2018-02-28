@@ -8,9 +8,9 @@
         <button (click)="close($event)" class="icon dashicons-no-alt"></button>
       </div>
     </div>
-    <div class="ngm-form-content">
+    <div class="ngm-form-content" style="overflow-y: scroll;">
       <app-media-toolbar></app-media-toolbar>
-      <app-grid-view></app-grid-view>
+      <app-grid-view [InteractionType]="MultipleSelector()"></app-grid-view>
     </div>
   </div>
 </div>

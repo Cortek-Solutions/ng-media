@@ -39,3 +39,7 @@ export interface ImageScale {
   width: number;
   height: number;
 }
+
+export enum IInteractionType {
+  Edit, SingleSelect, MultipleSelect
+}

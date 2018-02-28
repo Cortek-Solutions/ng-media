@@ -20,4 +20,20 @@ export class UploaderService {
       return x;
     });
   }
+  public multipleSelectImage (image: IImage, images: IImage[]): IImage[] {
+    return images.map((x: IImage) => {
+      if ( ! x.$meta) {
+        x.$meta = {
+          selected: false
+        };
+      }
+      if (x.id === image.id && x.$meta.selected) {
+        x.$meta.selected = false;
+      } else if (x.id === image.id) {
+        x.$meta.selected = true;
+      }
+      return x;
+    });
+  }
+
 }
