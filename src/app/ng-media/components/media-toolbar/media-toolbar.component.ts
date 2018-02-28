@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UploaderService } from '../../services/uploader.service';
 import { Store } from '@ngrx/store';
-import { AppState, IImage } from '#defs';
+import { AppState, IImage } from '../../interfaces/definitions';
 import mocks from '../../mocks';
 import { sample, times, random, sortBy, uniqBy } from 'lodash';
 

@@ -1,5 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { IEvent, IImage } from '#defs';
+import { IEvent, IImage } from '../interfaces/definitions';
 @Injectable()
 export class UploaderService {
   public photoSelector: EventEmitter<any> = new EventEmitter();
