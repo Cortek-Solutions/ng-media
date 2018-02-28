@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { UploaderService } from '../../services/uploader.service';
 import { IImage, AppState, IEvent, IInteractionType } from '../../interfaces/definitions';
 import { Store } from '@ngrx/store';
@@ -16,6 +16,7 @@ export class GridViewComponent implements OnInit {
   public images: Array<IImage> = [];
   public searchMode = false;
   public filteredImages: Array<IImage> = [];
+  @Output() public selectionChange: EventEmitter<Array<IImage>> = new EventEmitter();
   @Input() public InteractionType: IInteractionType = IInteractionType.Edit;
 
   constructor(
@@ -67,5 +68,6 @@ export class GridViewComponent implements OnInit {
       this.uploader.photoSelector.emit(image);
       this.panel.showDetaile(image);
     }
+    this.selectionChange.emit(this.images);
   }
 }

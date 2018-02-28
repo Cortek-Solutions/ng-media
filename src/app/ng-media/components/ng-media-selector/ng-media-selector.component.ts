@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IInteractionType } from '../../interfaces/definitions';
+import { IInteractionType, IImage } from '../../interfaces/definitions';
 
 @Component({
   selector: 'app-ng-media-selector',
@@ -9,8 +9,14 @@ import { IInteractionType } from '../../interfaces/definitions';
 export class NgMediaSelectorComponent implements OnInit {
   public _ref: any;
 
+  public selectedItems: Array<IImage> = [];
   constructor() { }
 
+  public updateSelection (items: Array<IImage> = []) {
+    this.selectedItems = items.filter(x => {
+      return x.$meta.selected;
+    });
+  }
   public SingleSelector () {
     return IInteractionType.SingleSelect;
   }
