@@ -103,7 +103,7 @@ export class MediaToolbarComponent implements OnInit {
     setTimeout(() => {
 
       times(random(1, 4), () => sample(mocks)).map(x => {
-        // Search is not working at the moment.
+        
       });
       this.loading = false;
       this.uploader.events.emit({
