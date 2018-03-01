@@ -2,6 +2,7 @@ import { Component, Input, ViewChild, ViewContainerRef, OnInit } from '@angular/
 import { CrudService } from '../../services/crud.service';
 import { IImage } from '../../interfaces/definitions';
 import { UtilsService } from '../../services/utils.service';
+import { StoreService } from '../../services/store.service';
 
 @Component({
   selector: 'app-image-editor',
@@ -22,12 +23,13 @@ export class ImageEditorComponent implements OnInit {
 
   constructor(
     private crud: CrudService,
-    private util: UtilsService
+    private util: UtilsService,
+    private store: StoreService,
   ) { }
 
   disableEditing(image: IImage) {
     image.$meta.editing = false;
-    this.crud.UpdateItem(image);
+    this.store.UpdateItem(image);
   }
 
   ngOnInit() {
@@ -98,6 +100,6 @@ export class ImageEditorComponent implements OnInit {
   saveImage() {
     this.image.src = this.canvas.toDataURL(this.image.type, 1.0);
     this.disableEditing(this.image);
-    this.crud.UpdateItem(this.image);
+    this.store.UpdateItem(this.image);
   }
 }

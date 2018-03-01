@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { UploaderService } from '../../services/uploader.service';
 import { AppState, IImage } from '../../interfaces/definitions';
-import { CrudService } from '../../services/crud.service';
+import { StoreService } from '../../services/store.service';
 declare var require: any;
 const uuid = require('uuid/v1');
 
@@ -19,7 +19,7 @@ export class UploadComponent {
 
   constructor(
     private _ub: UploaderService,
-    private crud: CrudService
+    private store: StoreService,
   ) { }
 
   activeUploader() {
@@ -60,7 +60,7 @@ export class UploadComponent {
             updatedAt: new Date(),
             uploadedBy: 'Admin'
           } as IImage;
-          this.crud.CreateItem(item);
+          this.store.CreateItem(item);
         };
       };
       reader.readAsDataURL(file);

@@ -31,5 +31,11 @@ export class StoreService {
       }
       return item;
     });
+    this.subject.next(this.items);
+  }
+  public CreateItem(image: IImage) {
+    this.items = [image].concat(this.items);
+    this.subject.next(this.items);
+    this.subject.next(this.items);
   }
 }

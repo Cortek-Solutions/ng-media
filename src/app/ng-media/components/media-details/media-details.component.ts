@@ -19,47 +19,46 @@ export class MediaDetailsComponent implements OnInit {
 
   constructor(
     private us: UploaderService,
-    private store: Store<AppState>,
     private requests: RequestsService,
     private crud: CrudService,
-    private store2: StoreService,
+    private store: StoreService,
   ) { }
 
   ngOnInit() {
     this.us.photoSelector.subscribe((image: IImage) => {
       this.image = image;
     });
-    this.store2.GetSubsriber().subscribe((items: IImage[]) => {
+    this.store.GetSubsriber().subscribe((items: IImage[]) => {
       this.images = items;
     });
   }
 
   public DeleteImage (image: IImage) {
     if (confirm('Are you sure you want to delete this item?')) {
-      this.crud.DeleteItem(image);
+      this.store.DeleteItem(image);
       this._ref.destroy();
     }
     this.requests.DeleteItem(image.id);
-    this.store2.DeleteItem(image);
+    this.store.DeleteItem(image);
     this.image = null;
   }
 
   public UpdateImage (image: IImage) {
-    this.crud.UpdateItem(image);
+    this.store.UpdateItem(image);
     this.requests.UpdateImage(image);
-    this.store2.UpdateItem(image);
+    this.store.UpdateItem(image);
     this.image = null;
     this._ref.destroy();
   }
 
   enableEditing(image: IImage) {
     image.$meta.editing = true;
-    this.crud.UpdateItem(image);
+    this.store.UpdateItem(image);
   }
 
   disableEditing(image: IImage) {
     image.$meta.editing = false;
-    this.crud.UpdateItem(image);
+    this.store.UpdateItem(image);
   }
 
   chnageItem(status) {
