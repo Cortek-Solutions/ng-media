@@ -56,4 +56,18 @@ export class UtilsService {
       resolve(scaled);
     });
   }
+
+  public createEscapeClose (target: any) {
+    function globalEscapeListener ($e) {
+      const e = $e || window.event;
+      if (e.keyCode !== 27) {
+        return null;
+      }
+      document.removeEventListener('keyup', globalEscapeListener);
+      if (this._ref) {
+        this._ref.destroy();
+      }
+    }
+    document.addEventListener('keyup', globalEscapeListener.bind(target));
+  }
 }

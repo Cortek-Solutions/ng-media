@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { UploaderService } from '../../services/uploader.service';
 import { IImage, AppState } from '../../interfaces/definitions';
 import { Store } from '@ngrx/store';
-import { CrudService } from '../../services/crud.service';
 import { RequestsService } from '../../services/requests.service';
 import { StoreService } from '../../services/store.service';
+import { UtilsService } from '../../services/utils.service';
 
 @Component({
   selector: 'app-media-details',
@@ -20,8 +20,8 @@ export class MediaDetailsComponent implements OnInit {
   constructor(
     private us: UploaderService,
     private requests: RequestsService,
-    private crud: CrudService,
     private store: StoreService,
+    private util: UtilsService,
   ) { }
 
   ngOnInit() {
@@ -31,6 +31,8 @@ export class MediaDetailsComponent implements OnInit {
     this.store.GetSubsriber().subscribe((items: IImage[]) => {
       this.images = items;
     });
+    this.store.forceRefresh();
+    this.util.createEscapeClose(this);
   }
 
   public DeleteImage (image: IImage) {

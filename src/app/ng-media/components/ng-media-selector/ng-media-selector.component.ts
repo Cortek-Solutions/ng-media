@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IInteractionType, IImage, IDialogConfiguration } from '../../interfaces/definitions';
+import { UtilsService } from '../../services/utils.service';
 
 
 
@@ -13,7 +14,9 @@ export class NgMediaSelectorComponent implements OnInit {
   public config: IDialogConfiguration = null;
   public subject: any = null;
   public selectedItems: Array<IImage> = [];
-  constructor() { }
+  constructor(
+    private utils: UtilsService,
+  ) { }
 
   public updateSelection (items: Array<IImage> = []) {
     this.selectedItems = items.filter(x => {
@@ -27,13 +30,7 @@ export class NgMediaSelectorComponent implements OnInit {
     if (!this.config) {
       this.config = {};
     }
-
-    function globalEscapeListener ($e) {
-      const e = $e || window.event;
-      document.removeEventListener('keyup', globalEscapeListener);
-      this._ref.destroy();
-    }
-    document.addEventListener('keyup', globalEscapeListener.bind(this));
+    this.utils.createEscapeClose(this);
   }
   close(e) {
     if (e.target === e.currentTarget) {
@@ -45,5 +42,4 @@ export class NgMediaSelectorComponent implements OnInit {
     this._ref.destroy();
   }
 
-  
 }

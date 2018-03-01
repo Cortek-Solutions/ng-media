@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { UploaderService } from '../../services/uploader.service';
 import { IImage, AppState, IEvent, IInteractionType } from '../../interfaces/definitions';
-import { Store } from '@ngrx/store';
 import { RequestsService } from '../../services/requests.service';
 import { DetailPanelService } from './../../services/detail-panel.service';
 import { StoreService } from '../../services/store.service';
@@ -23,9 +22,8 @@ export class GridViewComponent implements OnInit {
   constructor(
     private uploader: UploaderService,
     private requests: RequestsService,
-    private store: Store<AppState>,
     private panel: DetailPanelService,
-    private store2: StoreService,
+    private store: StoreService,
   ) {
     try {
       this.images = [];
@@ -42,7 +40,7 @@ export class GridViewComponent implements OnInit {
         this.searchMode = false;
       }
     });
-    this.store2.GetSubsriber().subscribe((items: IImage[]) => {
+    this.store.GetSubsriber().subscribe((items: IImage[]) => {
       this.images = items;
     });
     this.requests.GetInitialMedias();

@@ -38,4 +38,10 @@ export class StoreService {
     this.subject.next(this.items);
     this.subject.next(this.items);
   }
+  /**
+   * Updates all modules that are listening to the products
+   */
+  public forceRefresh () {
+    this.subject.next(this.items);
+  }
 }
