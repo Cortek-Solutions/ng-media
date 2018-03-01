@@ -101,10 +101,10 @@ export class MediaToolbarComponent implements OnInit {
   public actualFetch () {
     this.loadingActive = true;
     setTimeout(() => {
-
-      times(random(1, 4), () => sample(mocks)).map(x => {
-        
+      const items = times(random(1, 4), () => sample(mocks)).map(x => {
+        return x;
       });
+      this.store.ResetSearch(items as Array<any>);
       this.loading = false;
       this.uploader.events.emit({
         type: 'SEARCH_END'

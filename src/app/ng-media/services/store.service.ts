@@ -7,9 +7,12 @@ import { merge } from 'lodash';
 export class StoreService {
 
   public subject: Subject<any> = null;
+  public searchSubject: Subject<any> = null;
   public items: Array<IImage> = [];
+  public search: Array<IImage> = [];
   constructor() {
     this.subject = new Subject();
+    this.searchSubject = new Subject();
   }
 
   public ResetItems (items: Array<IImage> = []) {
@@ -17,6 +20,9 @@ export class StoreService {
     this.subject.next(this.items);
   }
 
+  public GetSearcher (): Observable<any> {
+    return this.searchSubject.asObservable();
+  }
   public GetSubsriber (): Observable<any> {
     return this.subject.asObservable();
   }
@@ -43,5 +49,9 @@ export class StoreService {
    */
   public forceRefresh () {
     this.subject.next(this.items);
+  }
+  public ResetSearch (items: Array<IImage> = []) {
+    this.search = items;
+    this.searchSubject.next(items);
   }
 }
