@@ -19,6 +19,7 @@ import { UtilsService } from './services/utils.service';
 import { RequestsService } from './services/requests.service';
 import { NgMediaSelectorComponent } from './components/ng-media-selector/ng-media-selector.component';
 import { PublicService } from './services/public.service';
+import { StoreService } from './services/store.service';
 
 @NgModule({
   imports: [
@@ -49,6 +50,7 @@ import { PublicService } from './services/public.service';
     DetailPanelService,
     UtilsService,
     CrudService,
+    StoreService,
     RequestsService
   ],
   exports: [

@@ -1,6 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { UploaderService } from '../../services/uploader.service';
-import { Store } from '@ngrx/store';
 import { AppState, IImage } from '../../interfaces/definitions';
 import { CrudService } from '../../services/crud.service';
 declare var require: any;

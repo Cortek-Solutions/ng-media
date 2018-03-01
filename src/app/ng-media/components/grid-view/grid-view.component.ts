@@ -4,6 +4,7 @@ import { IImage, AppState, IEvent, IInteractionType } from '../../interfaces/def
 import { Store } from '@ngrx/store';
 import { RequestsService } from '../../services/requests.service';
 import { DetailPanelService } from './../../services/detail-panel.service';
+import { StoreService } from '../../services/store.service';
 
 declare var require: any;
 
@@ -23,7 +24,8 @@ export class GridViewComponent implements OnInit {
     private uploader: UploaderService,
     private requests: RequestsService,
     private store: Store<AppState>,
-    private panel: DetailPanelService
+    private panel: DetailPanelService,
+    private store2: StoreService,
   ) {
     try {
       this.images = [];
@@ -40,12 +42,12 @@ export class GridViewComponent implements OnInit {
         this.searchMode = false;
       }
     });
-    this.store.select('mediaItems').subscribe((items: IImage[]) => {
+    this.store2.GetSubsriber().subscribe((items: IImage[]) => {
       this.images = items;
     });
-    this.store.select('searchMediaItems').subscribe((items: IImage[]) => {
-      this.filteredImages = items;
-    });
+    // this.store.select('searchMediaItems').subscribe((items: IImage[]) => {
+    //   this.filteredImages = items;
+    // });
     this.requests.GetInitialMedias();
   }
 
