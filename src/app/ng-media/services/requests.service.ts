@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { AppState, IImage } from '../interfaces/definitions';
 import { StoreService } from '../services/store.service';
 
@@ -15,8 +14,7 @@ const uuid = require('uuid/v1');
 export class RequestsService {
 
   constructor(
-    private store: Store<AppState>,
-    private store2: StoreService,
+    private store: StoreService,
   ) { }
 
   /**
@@ -24,7 +22,7 @@ export class RequestsService {
    */
   public GetInitialMedias () {
 
-    this.store2.ResetItems(media.map((x: any) => {
+    this.store.ResetItems(media.map((x: any) => {
       x.id = uuid();
       x.createdAt = randomDate(new Date(2018, 0, 1), new Date(2018, 12, 30));
       return x as any;

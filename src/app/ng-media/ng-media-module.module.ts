@@ -14,7 +14,6 @@ import { FormsModule } from '@angular/forms';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { ImageCropperComponent } from './components/image-cropper/image-cropper.component';
 import { ImageEditorComponent } from './components/image-editor/image-editor.component';
-import { CrudService } from './services/crud.service';
 import { UtilsService } from './services/utils.service';
 import { RequestsService } from './services/requests.service';
 import { NgMediaSelectorComponent } from './components/ng-media-selector/ng-media-selector.component';
@@ -49,7 +48,6 @@ import { StoreService } from './services/store.service';
     PublicService,
     DetailPanelService,
     UtilsService,
-    CrudService,
     StoreService,
     RequestsService
   ],

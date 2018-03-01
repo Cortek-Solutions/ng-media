@@ -1,5 +1,4 @@
 import { Component, Input, ViewChild, ViewContainerRef, OnInit } from '@angular/core';
-import { CrudService } from '../../services/crud.service';
 import { IImage } from '../../interfaces/definitions';
 import { UtilsService } from '../../services/utils.service';
 import { StoreService } from '../../services/store.service';
@@ -22,7 +21,6 @@ export class ImageEditorComponent implements OnInit {
   private canvasHeight: number;
 
   constructor(
-    private crud: CrudService,
     private util: UtilsService,
     private store: StoreService,
   ) { }
