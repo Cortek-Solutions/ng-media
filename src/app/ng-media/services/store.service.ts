@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { IImage } from '../interfaces/definitions';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
-
+import { merge } from 'lodash';
 @Injectable()
 export class StoreService {
 
@@ -19,5 +19,17 @@ export class StoreService {
 
   public GetSubsriber (): Observable<any> {
     return this.subject.asObservable();
+  }
+  public DeleteItem(image: IImage) {
+    this.items =  this.items.filter(x => x.id !== image.id);
+    this.subject.next(this.items);
+  }
+  public UpdateItem(image: IImage) {
+    this.items = this.items.map(item => {
+      if (item.id === image.id) {
+        return merge(item, image);
+      }
+      return item;
+    });
   }
 }

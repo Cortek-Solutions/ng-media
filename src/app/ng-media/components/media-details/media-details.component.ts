@@ -4,6 +4,7 @@ import { IImage, AppState } from '../../interfaces/definitions';
 import { Store } from '@ngrx/store';
 import { CrudService } from '../../services/crud.service';
 import { RequestsService } from '../../services/requests.service';
+import { StoreService } from '../../services/store.service';
 
 @Component({
   selector: 'app-media-details',
@@ -21,13 +22,14 @@ export class MediaDetailsComponent implements OnInit {
     private store: Store<AppState>,
     private requests: RequestsService,
     private crud: CrudService,
+    private store2: StoreService,
   ) { }
 
   ngOnInit() {
     this.us.photoSelector.subscribe((image: IImage) => {
       this.image = image;
     });
-    this.store.select('mediaItems').subscribe((items: IImage[]) => {
+    this.store2.GetSubsriber().subscribe((items: IImage[]) => {
       this.images = items;
     });
   }
@@ -38,20 +40,14 @@ export class MediaDetailsComponent implements OnInit {
       this._ref.destroy();
     }
     this.requests.DeleteItem(image.id);
-    this.store.dispatch({
-      type: 'DELETE_ITEM',
-      payload: image
-    });
+    this.store2.DeleteItem(image);
     this.image = null;
   }
 
   public UpdateImage (image: IImage) {
     this.crud.UpdateItem(image);
     this.requests.UpdateImage(image);
-    this.store.dispatch({
-      type: 'UPDATE_ITEM',
-      payload: image
-    });
+    this.store2.UpdateItem(image);
     this.image = null;
     this._ref.destroy();
   }

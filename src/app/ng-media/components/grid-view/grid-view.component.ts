@@ -45,9 +45,6 @@ export class GridViewComponent implements OnInit {
     this.store2.GetSubsriber().subscribe((items: IImage[]) => {
       this.images = items;
     });
-    // this.store.select('searchMediaItems').subscribe((items: IImage[]) => {
-    //   this.filteredImages = items;
-    // });
     this.requests.GetInitialMedias();
   }
 
