@@ -14,11 +14,6 @@ export class NgMediaComponent {
   ) {
   }
   public openSelector () {
-    const ref = this._pub.open({
-      interactionType: IInteractionType.SingleSelect
-    });
-    ref.afterClose().subscribe((result) => {
-      console.log('selected: ', result);
-    });
+    
   }
 }
