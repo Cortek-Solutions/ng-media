@@ -48,6 +48,7 @@ export enum IInteractionType {
 
 export interface IDialogConfiguration {
   title?: string;
+  interactionType?: IInteractionType;
 }
 
 export interface IDialogResult {

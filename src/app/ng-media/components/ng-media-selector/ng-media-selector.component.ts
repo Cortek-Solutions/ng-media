@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IInteractionType, IImage } from '../../interfaces/definitions';
+import { IInteractionType, IImage, IDialogConfiguration } from '../../interfaces/definitions';
 
 @Component({
   selector: 'app-ng-media-selector',
@@ -8,7 +8,7 @@ import { IInteractionType, IImage } from '../../interfaces/definitions';
 })
 export class NgMediaSelectorComponent implements OnInit {
   public _ref: any;
-
+  public config: IDialogConfiguration = null;
   public subject: any = null;
   public selectedItems: Array<IImage> = [];
   constructor() { }
@@ -19,9 +19,12 @@ export class NgMediaSelectorComponent implements OnInit {
     });
   }
   public GetInteractionType () {
-    return IInteractionType.MultipleSelect;
+    return this.config.interactionType || IInteractionType.SingleSelect;
   }
   ngOnInit() {
+    if (!this.config) {
+      this.config = {};
+    }
   }
   close(e) {
     if (e.target === e.currentTarget) {

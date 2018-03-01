@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PublicService } from '../../services/public.service';
+import { IInteractionType } from '../../interfaces/definitions';
 
 @Component({
   selector: 'app-ng-media',
@@ -13,8 +14,10 @@ export class NgMediaComponent {
   ) {
   }
   public openSelector () {
-    this._pub.open({
-    }).afterClose().subscribe((result) => {
+    const ref = this._pub.open({
+      interactionType: IInteractionType.SingleSelect
+    });
+    ref.afterClose().subscribe((result) => {
       console.log('selected: ', result);
     });
   }
