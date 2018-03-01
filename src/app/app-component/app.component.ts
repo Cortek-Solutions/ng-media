@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { PublicService } from '../ng-media/services/public.service';
 import { IInteractionType } from '../ng-media/interfaces/definitions';
 
+declare var require: any;
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
