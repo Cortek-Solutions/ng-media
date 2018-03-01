@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UploaderService } from '../../services/uploader.service';
 import { IImage, AppState } from '../../interfaces/definitions';
-import { Store } from '@ngrx/store';
 import { RequestsService } from '../../services/requests.service';
 import { StoreService } from '../../services/store.service';
 import { UtilsService } from '../../services/utils.service';

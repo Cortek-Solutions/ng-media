@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UploaderService } from '../../services/uploader.service';
-import { Store } from '@ngrx/store';
 import { AppState, IImage } from '../../interfaces/definitions';
 import mocks from '../../mocks';
 import { sample, times, random, sortBy, uniqBy } from 'lodash';
+import { StoreService } from '../../services/store.service';
 
 @Component({
   selector: 'app-media-toolbar',
@@ -20,7 +20,7 @@ export class MediaToolbarComponent implements OnInit {
 
   constructor(
     private uploader: UploaderService,
-    private store: Store<AppState>,
+    private store: StoreService,
   ) {
     this.types = [
       {
@@ -53,7 +53,7 @@ export class MediaToolbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.select('mediaItems').subscribe((images: IImage []) => {
+    this.store.GetSubsriber().subscribe((images: IImage []) => {
       this.dates = this.findDates(images);
     });
   }
@@ -103,10 +103,7 @@ export class MediaToolbarComponent implements OnInit {
     setTimeout(() => {
 
       times(random(1, 4), () => sample(mocks)).map(x => {
-        this.store.dispatch({
-          type: 'SEARCH_ADD_NEW_ITEM',
-          payload: x
-        });
+        // Search is not working at the moment.
       });
       this.loading = false;
       this.uploader.events.emit({
