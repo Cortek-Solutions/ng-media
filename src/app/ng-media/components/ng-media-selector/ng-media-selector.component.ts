@@ -9,6 +9,7 @@ import { IInteractionType, IImage } from '../../interfaces/definitions';
 export class NgMediaSelectorComponent implements OnInit {
   public _ref: any;
 
+  public subject: any = null;
   public selectedItems: Array<IImage> = [];
   constructor() { }
 
@@ -17,10 +18,7 @@ export class NgMediaSelectorComponent implements OnInit {
       return x.$meta.selected;
     });
   }
-  public SingleSelector () {
-    return IInteractionType.SingleSelect;
-  }
-  public MultipleSelector () {
+  public GetInteractionType () {
     return IInteractionType.MultipleSelect;
   }
   ngOnInit() {
@@ -30,5 +28,8 @@ export class NgMediaSelectorComponent implements OnInit {
       this._ref.destroy();
     }
   }
-
+  public CloseDialog () {
+    this.subject.next(this.selectedItems);
+    this._ref.destroy();
+  }
 }

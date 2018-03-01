@@ -10,10 +10,12 @@
     </div>
     <div class="ngm-form-content" style="overflow-y: scroll;">
       <app-media-toolbar></app-media-toolbar>
-      <app-grid-view (selectionChange)="updateSelection($event)" [InteractionType]="MultipleSelector()"></app-grid-view>
+      <app-grid-view 
+        (selectionChange)="updateSelection($event)" 
+        [InteractionType]="GetInteractionType()">
+      </app-grid-view>
       <br>
       <button (click)="CloseDialog()">Select</button>
     </div>
-
   </div>
 </div>

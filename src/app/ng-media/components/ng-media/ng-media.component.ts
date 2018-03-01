@@ -13,6 +13,9 @@ export class NgMediaComponent {
   ) {
   }
   public openSelector () {
-    this._pub.open(null);
+    this._pub.open({
+    }).afterClose().subscribe((result) => {
+      console.log('selected: ', result);
+    });
   }
 }

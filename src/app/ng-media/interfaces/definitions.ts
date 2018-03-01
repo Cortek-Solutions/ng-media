@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs/Observable';
+
 export interface IRectangle {
   w: number;
   h: number;
@@ -42,4 +44,12 @@ export interface ImageScale {
 
 export enum IInteractionType {
   Edit, SingleSelect, MultipleSelect
+}
+
+export interface IDialogConfiguration {
+  title?: string;
+}
+
+export interface IDialogResult {
+  afterClose(): Observable<string>;
 }
