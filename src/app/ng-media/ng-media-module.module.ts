@@ -56,4 +56,4 @@ import { StoreService } from './services/store.service';
     NgMediaSelectorComponent
   ]
 })
-export class NgMediaModuleModule { }
+export class NgMediaModule { }

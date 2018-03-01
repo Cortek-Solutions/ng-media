@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { NgMediaModuleModule } from './ng-media/ng-media-module.module';
+import { NgMediaModule } from './ng-media/ng-media-module.module';
 
 import { AppComponent } from './app-component/app.component';
 
@@ -11,7 +11,7 @@ import { AppComponent } from './app-component/app.component';
   ],
   imports: [
     BrowserModule,
-    NgMediaModuleModule
+    NgMediaModule
   ],
   providers: [],
   bootstrap: [AppComponent]
