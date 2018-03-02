@@ -8,7 +8,6 @@ import { UploadComponent } from './components/upload/upload.component';
 import { MediaToolbarComponent } from './components/media-toolbar/media-toolbar.component';
 import { GridViewComponent } from './components/grid-view/grid-view.component';
 import { MediaDetailsComponent } from './components/media-details/media-details.component';
-import { mediaReducer, mediaSearchReducer } from './store/app.reducer';
 import { FormsModule } from '@angular/forms';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { ImageCropperComponent } from './components/image-cropper/image-cropper.component';
