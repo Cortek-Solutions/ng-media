@@ -1,5 +1,4 @@
 import { IImage } from './../interfaces/definitions';
-import { Action } from '@ngrx/store';
 import { merge } from 'lodash';
 
 export function mediaReducer(items: Array<IImage> = [], action: Action) {
