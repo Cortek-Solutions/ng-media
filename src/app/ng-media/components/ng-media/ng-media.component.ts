@@ -13,7 +13,5 @@ export class NgMediaComponent {
     private _pub: PublicService,
   ) {
   }
-  public openSelector () {
-    
-  }
+  public openSelector () {}
 }
