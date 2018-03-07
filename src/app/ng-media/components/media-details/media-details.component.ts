@@ -30,7 +30,6 @@ export class MediaDetailsComponent implements OnInit {
     this.store.GetSubsriber().subscribe((items: IImage[]) => {
       this.images = items;
     });
-    
     this.store.forceRefresh();
     this.util.createEscapeClose(this);
   }
