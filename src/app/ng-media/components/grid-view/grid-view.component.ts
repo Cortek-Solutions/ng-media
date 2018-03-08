@@ -47,7 +47,7 @@ export class GridViewComponent implements OnInit {
     this.storage.GetSearcher().subscribe((items: IImage[]) => {
       this.filteredImages = items;
     });
-    this.requests.GetInitialMedias();
+    this.storage.forceRefresh();
   }
 
   public GetSearchImages () {

@@ -29,4 +29,7 @@ export class NgMediaComponent {
     console.warn('items:', this.storage);
     this.storage.ResetItems(mocks as any);
   }
+  public GetStorage (): Storage {
+    return this.storage;
+  }
 }

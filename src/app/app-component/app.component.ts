@@ -25,7 +25,8 @@ export class AppComponent {
   }
   openDialog () {
     const ref = this.pub.open({
-      interactionType: IInteractionType.SingleSelect
+      interactionType: IInteractionType.SingleSelect,
+      storage: this.gallery1.GetStorage()
     });
     ref.afterClose().subscribe((result) => {
       console.log('selected: ', result);

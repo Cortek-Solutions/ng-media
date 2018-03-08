@@ -10,7 +10,7 @@ import { StoreService } from '../../services/store.service';
 })
 export class NgMediaSelectorComponent implements OnInit {
 
-  public storage: Storage = new Storage();
+  public storage: Storage = null;
   public _ref: any;
   public config: IDialogConfiguration = null;
   public subject: any = null;

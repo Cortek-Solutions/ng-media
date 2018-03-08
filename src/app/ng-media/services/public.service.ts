@@ -24,6 +24,7 @@ export class PublicService {
     // panel.instance.appRef = this.appRef;
     panel.instance._ref = panel;
     panel.instance.config = configuration;
+    panel.instance.storage = configuration.storage;
     return {
       afterClose: function () {
         return panel.instance.subject.asObservable();
