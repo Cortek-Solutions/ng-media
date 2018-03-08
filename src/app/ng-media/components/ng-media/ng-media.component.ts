@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { PublicService } from '../../services/public.service';
-import { IInteractionType } from '../../interfaces/definitions';
+import { IInteractionType, IImage } from '../../interfaces/definitions';
+import { StoreService } from '../../services/store.service';
+import { Storage } from '../../services/storage';
 
 @Component({
   selector: 'app-ng-media',
@@ -9,9 +11,20 @@ import { IInteractionType } from '../../interfaces/definitions';
 })
 export class NgMediaComponent {
 
+  private storage: Storage = null;
+
   constructor (
     private _pub: PublicService,
+    private store: StoreService,
   ) {
+    this.storage = this.store.CreateStorage();  
   }
-  public openSelector () {}
+
+  /**
+   * @description It will reset all images inside this gallery. If you provide an array of items,
+   * they will be replaced.
+   */
+  public ResetItems (items: Array<IImage> = []) {
+
+  }
 }

@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UploaderService } from '../../services/uploader.service';
 import { IImage, AppState } from '../../interfaces/definitions';
 import { RequestsService } from '../../services/requests.service';
 import { StoreService } from '../../services/store.service';
 import { UtilsService } from '../../services/utils.service';
+import { Storage } from '../../services/storage';
 
 @Component({
   selector: 'app-media-details',
@@ -11,6 +12,7 @@ import { UtilsService } from '../../services/utils.service';
   styleUrls: ['./media-details.component.scss']
 })
 export class MediaDetailsComponent implements OnInit {
+  @Input('storage') public storage: Storage = null;
   public image: IImage = null;
   public images: Array<IImage>;
   public appRef: any;
@@ -19,7 +21,6 @@ export class MediaDetailsComponent implements OnInit {
   constructor(
     private us: UploaderService,
     private requests: RequestsService,
-    private store: StoreService,
     private util: UtilsService,
   ) { }
 
@@ -27,39 +28,39 @@ export class MediaDetailsComponent implements OnInit {
     this.us.photoSelector.subscribe((image: IImage) => {
       this.image = image;
     });
-    this.store.GetSubsriber().subscribe((items: IImage[]) => {
+    this.storage.GetSubsriber().subscribe((items: IImage[]) => {
       this.images = items;
     });
-    this.store.forceRefresh();
+    this.storage.forceRefresh();
     this.util.createEscapeClose(this);
   }
 
   public DeleteImage (image: IImage) {
     if (confirm('Are you sure you want to delete this item?')) {
-      this.store.DeleteItem(image);
+      this.storage.DeleteItem(image);
       this._ref.destroy();
     }
     this.requests.DeleteItem(image.id);
-    this.store.DeleteItem(image);
+    this.storage.DeleteItem(image);
     this.image = null;
   }
 
   public UpdateImage (image: IImage) {
-    this.store.UpdateItem(image);
+    this.storage.UpdateItem(image);
     this.requests.UpdateImage(image);
-    this.store.UpdateItem(image);
+    this.storage.UpdateItem(image);
     this.image = null;
     this._ref.destroy();
   }
 
   enableEditing(image: IImage) {
     image.$meta.editing = true;
-    this.store.UpdateItem(image);
+    this.storage.UpdateItem(image);
   }
 
   disableEditing(image: IImage) {
     image.$meta.editing = false;
-    this.store.UpdateItem(image);
+    this.storage.UpdateItem(image);
   }
 
   chnageItem(status) {

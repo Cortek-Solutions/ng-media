@@ -2,6 +2,7 @@ import { Component, Input, ViewChild, ViewContainerRef, OnInit } from '@angular/
 import { IImage } from '../../interfaces/definitions';
 import { UtilsService } from '../../services/utils.service';
 import { StoreService } from '../../services/store.service';
+import { Storage } from '../../services/storage';
 
 @Component({
   selector: 'app-image-editor',
@@ -9,6 +10,7 @@ import { StoreService } from '../../services/store.service';
   styleUrls: ['./image-editor.component.scss']
 })
 export class ImageEditorComponent implements OnInit {
+  @Input('storage') public storage: Storage = null;
   @Input('image') image: IImage;
   @ViewChild('imageBox', {read: ViewContainerRef}) imageBox: ViewContainerRef;
   @ViewChild('editorContainer', {read: ViewContainerRef}) editorContainer: ViewContainerRef;
@@ -22,12 +24,11 @@ export class ImageEditorComponent implements OnInit {
 
   constructor(
     private util: UtilsService,
-    private store: StoreService,
   ) { }
 
   disableEditing(image: IImage) {
     image.$meta.editing = false;
-    this.store.UpdateItem(image);
+    this.storage.UpdateItem(image);
   }
 
   ngOnInit() {
@@ -98,6 +99,6 @@ export class ImageEditorComponent implements OnInit {
   saveImage() {
     this.image.src = this.canvas.toDataURL(this.image.type, 1.0);
     this.disableEditing(this.image);
-    this.store.UpdateItem(this.image);
+    this.storage.UpdateItem(this.image);
   }
 }
