@@ -67,7 +67,7 @@ export class GridViewComponent implements OnInit {
     if (this.InteractionType === IInteractionType.Edit) {
       this.images = this.uploader.selectImage(image, this.images);
       this.uploader.photoSelector.emit(image);
-      this.panel.showDetaile(image);
+      this.panel.showDetaile(image, this.storage);
     }
     this.selectionChange.emit(this.images);
   }

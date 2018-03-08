@@ -12,6 +12,7 @@ import { Storage } from '../../services/storage';
   styleUrls: ['./media-details.component.scss']
 })
 export class MediaDetailsComponent implements OnInit {
+
   @Input('storage') public storage: Storage = null;
   public image: IImage = null;
   public images: Array<IImage>;
@@ -48,7 +49,6 @@ export class MediaDetailsComponent implements OnInit {
   public UpdateImage (image: IImage) {
     this.storage.UpdateItem(image);
     this.requests.UpdateImage(image);
-    this.storage.UpdateItem(image);
     this.image = null;
     this._ref.destroy();
   }

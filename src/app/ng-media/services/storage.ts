@@ -27,7 +27,9 @@ export class Storage {
     return this.subject.asObservable();
   }
   public DeleteItem(image: IImage) {
+    console.log('Before delete: ', this.items.length);
     this.items =  this.items.filter(x => x.id !== image.id);
+    console.log('Before after: ', this.items.length);
     this.subject.next(this.items);
   }
   public UpdateItem(image: IImage) {

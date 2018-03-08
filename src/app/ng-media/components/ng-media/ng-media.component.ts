@@ -3,6 +3,7 @@ import { PublicService } from '../../services/public.service';
 import { IInteractionType, IImage } from '../../interfaces/definitions';
 import { StoreService } from '../../services/store.service';
 import { Storage } from '../../services/storage';
+import mocks from '../../mocks';
 
 @Component({
   selector: 'app-ng-media',
@@ -25,6 +26,7 @@ export class NgMediaComponent {
    * they will be replaced.
    */
   public ResetItems (items: Array<IImage> = []) {
-
+    console.warn('items:', this.storage);
+    this.storage.ResetItems(mocks as any);
   }
 }

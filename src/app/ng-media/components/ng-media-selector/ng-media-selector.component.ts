@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { IInteractionType, IImage, IDialogConfiguration } from '../../interfaces/definitions';
 import { UtilsService } from '../../services/utils.service';
-
-
+import { Storage } from '../../services/storage';
+import { StoreService } from '../../services/store.service';
 
 @Component({
-  selector: 'app-ng-media-selector',
   templateUrl: './ng-media-selector.component.html',
   styleUrls: ['./ng-media-selector.component.scss']
 })
 export class NgMediaSelectorComponent implements OnInit {
+
+  public storage: Storage = new Storage();
   public _ref: any;
   public config: IDialogConfiguration = null;
   public subject: any = null;
