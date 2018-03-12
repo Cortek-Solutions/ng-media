@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import { NgMediaService } from '../../services/public.service';
-import { IInteractionType, IImage } from '../../interfaces/definitions';
+import { IInteractionType, IImage,  } from '../../interfaces/definitions';
 import { StoreService } from '../../services/store.service';
 import { Storage } from '../../services/storage';
 import mocks from '../../mocks';
@@ -13,6 +13,8 @@ import mocks from '../../mocks';
 export class NgMediaComponent implements OnInit {
 
   @Input('type') public type: 'single' | 'multiple' | 'editor' = 'editor';
+  @Output('selectionChange') public selectionChange: EventEmitter<Array<IImage>> = new EventEmitter();
+
   public storage: Storage = null;
 
   constructor (
@@ -23,6 +25,9 @@ export class NgMediaComponent implements OnInit {
     
   }
 
+  public updateSelection (items: Array<IImage> = []) {
+    this.selectionChange.emit(items);
+  }
   ngOnInit () {
     this.storage.GetSubsriber().subscribe(data => {
       console.log('Change ', data);
