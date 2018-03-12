@@ -13,7 +13,7 @@ import mocks from '../../mocks';
 export class NgMediaComponent {
 
   @Input('type') public type: 'single' | 'multiple' | 'editor' = 'editor';
-  private storage: Storage = null;
+  public storage: Storage = null;
 
   constructor (
     private _pub: NgMediaService,
