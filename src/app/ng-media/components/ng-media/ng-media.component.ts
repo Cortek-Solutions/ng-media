@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgMediaService } from '../../services/public.service';
 import { IInteractionType, IImage } from '../../interfaces/definitions';
 import { StoreService } from '../../services/store.service';
@@ -10,7 +10,7 @@ import mocks from '../../mocks';
   templateUrl: './ng-media.component.html',
   styleUrls: ['./ng-media.component.scss']
 })
-export class NgMediaComponent {
+export class NgMediaComponent implements OnInit {
 
   @Input('type') public type: 'single' | 'multiple' | 'editor' = 'editor';
   public storage: Storage = null;
@@ -20,8 +20,14 @@ export class NgMediaComponent {
     private store: StoreService,
   ) {
     this.storage = this.store.CreateStorage();
+    
   }
 
+  ngOnInit () {
+    this.storage.GetSubsriber().subscribe(data => {
+      console.log('Change ', data);
+    });
+  }
   /**
    * @description It will reset all images inside this gallery. If you provide an array of items,
    * they will be replaced.

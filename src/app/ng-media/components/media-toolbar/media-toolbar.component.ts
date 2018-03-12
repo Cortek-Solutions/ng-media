@@ -16,6 +16,7 @@ export class MediaToolbarComponent implements OnInit {
   @Input('storage') public storage: Storage = null;
   @Input() public InteractionType: IInteractionType = IInteractionType.Edit;
 
+  public active: boolean = false;
   public loadingActive = false;
   public loading = false;
   private _timer = null;
@@ -61,6 +62,13 @@ export class MediaToolbarComponent implements OnInit {
     });
   }
 
+  public UploaderToggle () {
+    this.active = this.active ? false : true;
+  }
+
+  public upload () {
+
+  }
   public IsEditing (): boolean {
     return this.InteractionType === IInteractionType.Edit;
   }

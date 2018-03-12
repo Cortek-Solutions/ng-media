@@ -1,17 +1,11 @@
-<div>
-  <h3 class="ngm-inline-block">
-    Media Library
-  </h3>
-  <button class="ngm-btn ngm-btn-md ngm-btn-primary" (click)="activeUploader()">Add New</button>
-</div>
 <div *ngIf="active" class="uploader-container ngm-text-center"  
-      (dragenter)="eventHandler($event)" 
-      (dragover)="eventHandler($event)" 
-      (dragleave)="eventHandler($event)" 
-      (drop)="setToFileUploader($event)">
+  (dragenter)="eventHandler($event)" 
+  (dragover)="eventHandler($event)" 
+  (dragleave)="eventHandler($event)" 
+  (drop)="setToFileUploader($event)">
   <div *ngIf="windowUploader" class="uploader-window">
     <h1>
-        Drop files to upload
+      Drop files to upload
     </h1>
   </div>
   <div class="uploader-zone">
@@ -21,7 +15,7 @@
     <span>or</span>
     <div class="ngm-upload-button">
       <label for="file-upload" class="ngm-btn ngm-btn-lg">
-          Select Files
+        Select Files
       </label>
       <input #inputFile id="file-upload" type="file" multiple (change)="uploader()"/>
     </div>
@@ -30,6 +24,3 @@
     </span>
   </div>
 </div>
-<!-- <div class="ngm-upload-progress" *ngIf="progressIsActive">
-  <div class="ngm-progress-bar" [style.width.%]="progressPrecent"></div>
-</div> -->

@@ -12,9 +12,12 @@ const uuid = require('uuid/v1');
   styleUrls: ['./upload.component.scss']
 })
 export class UploadComponent {
+  public active: boolean = false;
   @Input('storage') public storage: Storage = null;
   @ViewChild('inputFile') fileuploader: ElementRef;
-  public active = false;
+  @Input('Active') public set Active(value: boolean) {
+    this.active = value;
+  };
   public progressIsActive = false;
   public windowUploader = false;
   public progressPrecent: Number;
