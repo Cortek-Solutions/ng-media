@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UploaderService } from '../../services/uploader.service';
-import { AppState, IImage } from '../../interfaces/definitions';
+import { AppState, IImage, IInteractionType } from '../../interfaces/definitions';
 import mocks from '../../mocks';
 import { sample, times, random, sortBy, uniqBy } from 'lodash';
 import { StoreService } from '../../services/store.service';
@@ -14,6 +14,8 @@ import { Storage } from '../../services/storage';
 export class MediaToolbarComponent implements OnInit {
 
   @Input('storage') public storage: Storage = null;
+  @Input() public InteractionType: IInteractionType = IInteractionType.Edit;
+
   public loadingActive = false;
   public loading = false;
   private _timer = null;
@@ -59,6 +61,9 @@ export class MediaToolbarComponent implements OnInit {
     });
   }
 
+  public IsEditing (): boolean {
+    return this.InteractionType === IInteractionType.Edit;
+  }
 
   private findDates (items: IImage[]): Array<{key: string, value: string}> {
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',

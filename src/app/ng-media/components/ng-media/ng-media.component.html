@@ -1,5 +1,5 @@
-<div class="ngm-container">
-  <app-upload [storage]="storage"></app-upload>
-  <app-media-toolbar [storage]="storage"></app-media-toolbar>
-  <app-grid-view [storage]="storage"></app-grid-view>
-</div>
+<app-upload [storage]="storage"></app-upload>
+<app-media-toolbar [storage]="storage" [InteractionType]="GetInteractionType(type)"></app-media-toolbar>
+<app-grid-view 
+  [InteractionType]="GetInteractionType(type)"
+  [storage]="storage" ></app-grid-view>
