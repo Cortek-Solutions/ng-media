@@ -22,11 +22,11 @@ export class RequestsService {
    */
   public GetInitialMedias () {
 
-    this.store.ResetItems(media.map((x: any) => {
-      x.id = uuid();
-      x.createdAt = randomDate(new Date(2018, 0, 1), new Date(2018, 12, 30));
-      return x as any;
-    }));
+    // this.store.ResetItems(media.map((x: any) => {
+    //   x.id = uuid();
+    //   x.createdAt = randomDate(new Date(2018, 0, 1), new Date(2018, 12, 30));
+    //   return x as any;
+    // }));
 
   }
 

@@ -1,7 +1,8 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, Input } from '@angular/core';
 import { UploaderService } from '../../services/uploader.service';
 import { AppState, IImage } from '../../interfaces/definitions';
 import { StoreService } from '../../services/store.service';
+import { Storage } from '../../services/storage';
 declare var require: any;
 const uuid = require('uuid/v1');
 
@@ -11,6 +12,7 @@ const uuid = require('uuid/v1');
   styleUrls: ['./upload.component.scss']
 })
 export class UploadComponent {
+  @Input('storage') public storage: Storage = null;
   @ViewChild('inputFile') fileuploader: ElementRef;
   public active = false;
   public progressIsActive = false;
@@ -19,7 +21,6 @@ export class UploadComponent {
 
   constructor(
     private _ub: UploaderService,
-    private store: StoreService,
   ) { }
 
   activeUploader() {
@@ -60,7 +61,7 @@ export class UploadComponent {
             updatedAt: new Date(),
             uploadedBy: 'Admin'
           } as IImage;
-          this.store.CreateItem(item);
+          this.storage.CreateItem(item);
         };
       };
       reader.readAsDataURL(file);

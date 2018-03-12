@@ -6,11 +6,16 @@
   <h3>Manage your media on a separate page, or route, for example gallery.</h3>
 </div>
 
+<button (click)="update();">Update</button>
 <div style='margin: auto 30px ; border: 2px dotted silver; background-color: rgba(243,243,243,1)'>
-  <app-ng-media></app-ng-media>
+  <app-ng-media #gallery2></app-ng-media>
 </div>
 
 <div style="text-align:center; margin: 45px 0;">
   <h4>Now, you can open the gallery and let user select a file:</h4>
   <button (click)="openDialog();">Open dialog for single select</button>
 </div>
+
+<app-ng-media 
+  type="single"
+  #gallery1></app-ng-media>

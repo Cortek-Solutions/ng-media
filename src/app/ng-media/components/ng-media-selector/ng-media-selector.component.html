@@ -10,14 +10,16 @@
       </div>
     </div>
     <div class="ngm-form-content" style="overflow-y: scroll;">
-      <app-media-toolbar></app-media-toolbar>
+      <app-media-toolbar [storage]="storage"></app-media-toolbar>
+
       <div style="margin: 7.5px;">
         <app-grid-view 
+          [storage]="storage"
           (selectionChange)="updateSelection($event)" 
           [InteractionType]="GetInteractionType()">
         </app-grid-view>
       </div>
-      
+
     </div>
   </div>
 </div>

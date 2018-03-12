@@ -4,6 +4,7 @@ import { IImage, AppState, IEvent, IInteractionType } from '../../interfaces/def
 import { RequestsService } from '../../services/requests.service';
 import { DetailPanelService } from './../../services/detail-panel.service';
 import { StoreService } from '../../services/store.service';
+import { Storage } from '../../services/storage';
 
 declare var require: any;
 
@@ -18,12 +19,12 @@ export class GridViewComponent implements OnInit {
   public filteredImages: Array<IImage> = [];
   @Output() public selectionChange: EventEmitter<Array<IImage>> = new EventEmitter();
   @Input() public InteractionType: IInteractionType = IInteractionType.Edit;
+  @Input('storage') public storage: Storage = null;
 
   constructor(
     private uploader: UploaderService,
     private requests: RequestsService,
     private panel: DetailPanelService,
-    private store: StoreService,
   ) {
     try {
       this.images = [];
@@ -40,13 +41,13 @@ export class GridViewComponent implements OnInit {
         this.searchMode = false;
       }
     });
-    this.store.GetSubsriber().subscribe((items: IImage[]) => {
+    this.storage.GetSubsriber().subscribe((items: IImage[]) => {
       this.images = items;
     });
-    this.store.GetSearcher().subscribe((items: IImage[]) => {
+    this.storage.GetSearcher().subscribe((items: IImage[]) => {
       this.filteredImages = items;
     });
-    this.requests.GetInitialMedias();
+    this.storage.forceRefresh();
   }
 
   public GetSearchImages () {
@@ -66,7 +67,7 @@ export class GridViewComponent implements OnInit {
     if (this.InteractionType === IInteractionType.Edit) {
       this.images = this.uploader.selectImage(image, this.images);
       this.uploader.photoSelector.emit(image);
-      this.panel.showDetaile(image);
+      this.panel.showDetaile(image, this.storage);
     }
     this.selectionChange.emit(this.images);
   }

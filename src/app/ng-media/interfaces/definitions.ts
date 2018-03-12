@@ -1,4 +1,5 @@
 import { Observable } from 'rxjs/Observable';
+import { Storage } from '../services/storage';
 
 export interface IRectangle {
   w: number;
@@ -49,6 +50,7 @@ export enum IInteractionType {
 export interface IDialogConfiguration {
   title?: string;
   interactionType?: IInteractionType;
+  storage?: Storage;
 }
 
 export interface IDialogResult {
