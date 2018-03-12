@@ -15,7 +15,7 @@ import { ImageEditorComponent } from './components/image-editor/image-editor.com
 import { UtilsService } from './services/utils.service';
 import { RequestsService } from './services/requests.service';
 import { NgMediaSelectorComponent } from './components/ng-media-selector/ng-media-selector.component';
-import { PublicService } from './services/public.service';
+import { NgMediaService } from './services/public.service';
 import { StoreService } from './services/store.service';
 
 @NgModule({
@@ -41,7 +41,7 @@ import { StoreService } from './services/store.service';
   ],
   providers: [
     UploaderService,
-    PublicService,
+    NgMediaService,
     DetailPanelService,
     UtilsService,
     StoreService,

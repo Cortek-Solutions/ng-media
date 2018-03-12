@@ -4,7 +4,7 @@ import { NgMediaSelectorComponent } from '../components/ng-media-selector/ng-med
 import { Subject } from 'rxjs/Subject';
 
 @Injectable()
-export class PublicService {
+export class NgMediaService {
 
   constructor(
     private resolver: ComponentFactoryResolver,

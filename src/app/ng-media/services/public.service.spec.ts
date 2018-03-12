@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { PublicService } from './public.service';
+import { NgMediaService } from './public.service';
 
-describe('PublicService', () => {
+describe('NgMediaService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [PublicService]
+      providers: [NgMediaService]
     });
   });
 
-  it('should be created', inject([PublicService], (service: PublicService) => {
+  it('should be created', inject([NgMediaService], (service: NgMediaService) => {
     expect(service).toBeTruthy();
   }));
 });

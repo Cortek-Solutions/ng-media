@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PublicService } from '../../services/public.service';
+import { NgMediaService } from '../../services/public.service';
 import { IInteractionType, IImage } from '../../interfaces/definitions';
 import { StoreService } from '../../services/store.service';
 import { Storage } from '../../services/storage';
@@ -15,7 +15,7 @@ export class NgMediaComponent {
   private storage: Storage = null;
 
   constructor (
-    private _pub: PublicService,
+    private _pub: NgMediaService,
     private store: StoreService,
   ) {
     this.storage = this.store.CreateStorage();  
