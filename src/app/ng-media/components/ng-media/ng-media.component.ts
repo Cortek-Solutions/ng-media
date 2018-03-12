@@ -19,7 +19,7 @@ export class NgMediaComponent {
     private _pub: NgMediaService,
     private store: StoreService,
   ) {
-    this.storage = this.store.CreateStorage();  
+    this.storage = this.store.CreateStorage();
   }
 
   /**

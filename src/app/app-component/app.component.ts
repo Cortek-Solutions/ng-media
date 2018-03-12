@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   logo = require('./image.svg');
   title = 'app';
 
-  @ViewChild("gallery1") gallery1: NgMediaComponent;
+  @ViewChild('gallery1') gallery1: NgMediaComponent;
 
   constructor (
     private pub: NgMediaService,
@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
   }
   ngOnInit () {
     this.gallery1.ResetItems();
-  } 
+  }
   public update () {
     this.gallery1.ResetItems();
   }
