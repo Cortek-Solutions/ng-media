@@ -29,9 +29,6 @@ export class NgMediaComponent implements OnInit {
     this.selectionChange.emit(items);
   }
   ngOnInit () {
-    this.storage.GetSubsriber().subscribe(data => {
-      console.log('Change ', data);
-    });
   }
   /**
    * @description It will reset all images inside this gallery. If you provide an array of items,
