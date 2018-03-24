@@ -22,7 +22,6 @@ export class NgMediaComponent implements OnInit {
     private store: StoreService,
   ) {
     this.storage = this.store.CreateStorage();
-    
   }
 
   public updateSelection (items: Array<IImage> = []) {
@@ -35,8 +34,9 @@ export class NgMediaComponent implements OnInit {
    * they will be replaced.
    */
   public ResetItems (items: Array<IImage> = []) {
-    this.storage.ResetItems(mocks as any);
+    this.storage.ResetItems(items);
   }
+
   public GetStorage (): Storage {
     return this.storage;
   }
