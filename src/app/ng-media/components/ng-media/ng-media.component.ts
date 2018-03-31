@@ -13,6 +13,7 @@ import mocks from '../../mocks';
 export class NgMediaComponent implements OnInit {
 
   @Input('type') public type: 'single' | 'multiple' | 'editor' = 'editor';
+  @Input('enableUpload') public enableUpload = true;
   @Output('selectionChange') public selectionChange: EventEmitter<Array<IImage>> = new EventEmitter();
 
   public storage: Storage = null;

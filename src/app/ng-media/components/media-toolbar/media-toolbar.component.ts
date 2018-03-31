@@ -13,10 +13,11 @@ import { Storage } from '../../services/storage';
 })
 export class MediaToolbarComponent implements OnInit {
 
+  @Input('enableUpload') public enableUpload: false;
   @Input('storage') public storage: Storage = null;
   @Input() public InteractionType: IInteractionType = IInteractionType.Edit;
 
-  public active: boolean = false;
+  public active = false;
   public loadingActive = false;
   public loading = false;
   private _timer = null;

@@ -1,4 +1,6 @@
-<app-media-toolbar [storage]="storage" [InteractionType]="GetInteractionType(type)"></app-media-toolbar>
+<app-media-toolbar [storage]="storage" 
+  [enableUpload]="enableUpload"
+  [InteractionType]="GetInteractionType(type)"></app-media-toolbar>
 <app-grid-view 
   (selectionChange)="updateSelection($event)"
   [InteractionType]="GetInteractionType(type)"
