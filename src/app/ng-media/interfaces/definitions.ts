@@ -56,3 +56,12 @@ export interface IDialogConfiguration {
 export interface IDialogResult {
   afterClose(): Observable<string>;
 }
+
+export interface IFile {
+  filename?: string;
+  user?: number;
+  id?: any;
+  publicUrl?: string;
+  diskname?: string;
+  storage?: 'ng-cloud' | 's3';
+}

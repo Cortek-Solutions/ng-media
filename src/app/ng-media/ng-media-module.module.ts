@@ -17,11 +17,13 @@ import { RequestsService } from './services/requests.service';
 import { NgMediaSelectorComponent } from './components/ng-media-selector/ng-media-selector.component';
 import { NgMediaService } from './services/public.service';
 import { StoreService } from './services/store.service';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    HttpClientModule,
   ],
   declarations: [
     NgMediaComponent,
@@ -42,6 +44,7 @@ import { StoreService } from './services/store.service';
   providers: [
     UploaderService,
     NgMediaService,
+    HttpClient,
     DetailPanelService,
     UtilsService,
     StoreService,

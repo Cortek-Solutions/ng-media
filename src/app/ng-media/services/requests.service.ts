@@ -7,6 +7,7 @@ function randomDate(start, end): Date {
 }
 
 import media from '../mocks';
+import { HttpRequest, HttpClient } from '@angular/common/http';
 declare var require: any;
 const uuid = require('uuid/v1');
 
@@ -15,6 +16,7 @@ export class RequestsService {
 
   constructor(
     private store: StoreService,
+    private http: HttpClient,
   ) { }
 
   /**
@@ -32,6 +34,14 @@ export class RequestsService {
 
   public DeleteItem(id: string) {
     console.log('Requested to delete: ', id);
+    this.http.delete('http://localhost:1337/ngmedia/delete/' + id).subscribe(
+      (response) => {
+        console.log(response);
+      },
+      (response) => {
+        console.error(response);
+      }
+    );
   }
   public UpdateImage(image: IImage) {
     console.log('Requested to update: ', image);

@@ -28,6 +28,7 @@
     "@angular/platform-browser-dynamic": ">=2.4.5",
     "@angular/router": ">=2.4.5",
     "core-js": "^2.4.1",
+    "response-type": "^1.0.3",
     "rxjs": "^5.5.6",
     "uuid": "^3.2.1",
     "zone.js": "^0.8.19"
